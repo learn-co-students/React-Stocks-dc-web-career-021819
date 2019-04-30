@@ -7,15 +7,15 @@ class StockContainer extends Component {
     return (
       <div>
         <h2>Stocks</h2>
-        {
-          this.props.allStocks.map(stock => {
-            return <Stock
-                      stats={stock}
-                      key={stock.id}
-                      togglePortfolio={this.props.togglePortfolio}
-                    />
-          })
-        }
+          {
+            this.props.allStocks.map(stock => {
+              return <Stock
+                        stats={stock}
+                        key={stock.id}
+                        togglePortfolio={this.props.togglePortfolio}
+                      />
+            })
+          }
       </div>
     );
   }

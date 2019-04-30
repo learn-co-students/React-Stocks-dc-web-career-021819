@@ -24,10 +24,33 @@ class MainContainer extends Component {
   }
 
   togglePortfolio= stock => {
-    this.state.myPortfolio.includes(stock) ?
-    console.log('its in my porfolio already, lets try to remove it', stock)
-    : console.log('checking', stock.target)
+    this.state.myPortfolio.find(portfolioStock=> portfolioStock.id === stock.id) ?
+    this.sellStock(stock) : this.buyStock(stock)
   }
+
+  buyStock= (stockObj)=> {
+    let stockToBuy = this.state.allStocks.find(stock=> stock.id === stockObj.id)
+    let allStocks = this.state.allStocks.filter(stock=> {
+          return stock.id !== stockObj.id
+        })
+    this.setState({
+      myPortfolio: [...this.state.myPortfolio, stockToBuy],
+      allStocks
+    })
+  }
+
+  sellStock= (stockObj)=> {
+    let stockToSell = this.state.myPortfolio.find(stock=> stock.id === stockObj.id)
+    let myPortfolio = this.state.myPortfolio.filter(stock=> {
+          return stock.id !== stockObj.id
+        })
+    this.setState({
+      allStocks: [...this.state.allStocks, stockToSell],
+      myPortfolio
+    })
+  }
+
+
 
   render() {
     return (
@@ -45,7 +68,10 @@ class MainContainer extends Component {
             </div>
             <div className="col-4">
 
-              <PortfolioContainer myPortfolio={this.state.myPortfolio}/>
+              <PortfolioContainer
+                myPortfolio={this.state.myPortfolio}
+                togglePortfolio={this.togglePortfolio}
+              />
 
             </div>
           </div>

@@ -9,6 +9,7 @@ class PortfolioContainer extends Component {
         <h2>My Portfolio</h2>
           {
             this.props.myPortfolio.map(stock => {
+              console.log(stock)
               return <Stock
                         stats={stock}
                         key={stock.id}
