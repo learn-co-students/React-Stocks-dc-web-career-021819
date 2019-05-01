@@ -17,3 +17,8 @@ h2{
   margin: 0 auto;
   text-align: center;
 }
+
+.stockCounter{
+  margin-right: 25%;
+  text-align: right;
+}
